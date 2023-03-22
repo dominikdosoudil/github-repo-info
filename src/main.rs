@@ -1,7 +1,7 @@
 use chrono::{DateTime, Datelike, NaiveDateTime, Utc};
 
 use clap::{arg, Parser};
-use comfy_table::{Cell, Color, Table};
+use comfy_table::{Cell, Color, ContentArrangement, Table};
 use octocrab;
 use octocrab::params::repos::Type;
 
@@ -82,6 +82,7 @@ async fn main() -> Result<(), String> {
 
             let mut sum_stats = SumStats::new();
             let mut table = Table::new();
+            table.set_content_arrangement(ContentArrangement::DynamicFullWidth);
             table.add_row(vec![
                 Cell::new("Repository").fg(Color::Green),
                 Cell::new("Stars").fg(Color::Green),
