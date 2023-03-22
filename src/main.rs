@@ -9,6 +9,14 @@ use octocrab::params::repos::Type;
 struct Cli {
     #[arg(short, long, value_name = "Organization names")]
     orgs: Vec<String>,
+
+    #[arg(
+        short,
+        long,
+        value_name = "Take only n latest repositories for compactness",
+        default_value_t = usize::MAX
+    )]
+    latest_n: usize,
 }
 
 struct SumStats {
@@ -86,7 +94,7 @@ async fn main() -> Result<(), String> {
                 Cell::new("Size").fg(Color::Green),
                 Cell::new("Created").fg(Color::Green),
             ]);
-            for repo in org_repos.into_iter().take(5) {
+            for repo in org_repos.into_iter().take(args.latest_n) {
                 if repo.archived.unwrap() {
                     continue;
                 }
