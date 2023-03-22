@@ -7,7 +7,6 @@ use octocrab::params::repos::Type;
 
 #[derive(Parser, Debug)]
 struct Cli {
-    #[arg(short, long, value_name = "Organization names")]
     orgs: Vec<String>,
 
     #[arg(

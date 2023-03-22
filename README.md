@@ -1,5 +1,5 @@
 ```bash
-cargo run -- -o org_name_1 -o org_name_2
+cargo run -- -l 3 org_name_1 org_name_2
 ```
 
 Example:
